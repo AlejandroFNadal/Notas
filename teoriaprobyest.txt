@@ -1,0 +1,8 @@
+Variable
+	Cualitativa:
+	Cuantitativa:->Discreta: todos aquellos valores que en un campo de variacion
+				solo pueden tomar algunos valores
+		     ->Continua:
+	Aleatoria: es el resultado de un experimiento que se realiza en condiciones de incertidumbre con un grado de probabilidad
+
+ 

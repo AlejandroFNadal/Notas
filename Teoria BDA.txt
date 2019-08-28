@@ -1,0 +1,163 @@
+Teoria BDA
+
+Diseno Base de Datos
+
+recoleccion de requerimientos
+diseno conceptual
+recien luego de eso se elige un dbms
+transformacion al modelo d base de datos
+diseno fisico de la base de datos
+
+Modelo Entidad Relacion:
+	Entidades y Relaciones
+Modelo Conceptual:
+	las entidades no son necesariamente disyuntos.
+	una entidad se representa como un conjunto de atributos.
+	Correspondencia de cardinalidades, 1 a 1, 1 a muchos, muchos a muchos
+	Si hay una cantidad especifica, no se puede representar eso en el der
+
+2da forma normal: los atributos que no forman parte de ninguna clave dependen de forma completa de
+la clave principal
+
+3ra forma normal, no exista dependencia funcional transitiva. 
+
+herramientas case
+	uppercase son de requerimientos
+	middlecase
+	lowercase
+
+generan codigo a partir de graficos. 
+
+Diseno fisico
+
+cada gestor ofrece varias opciones:
+	tipos de indices
+	agrupamientos de registros, 
+	distintos tipos de tecnicas de dispersion	
+	diferentes valores para los parametros fisicos
+	como ser el tamano del bloque, de los buffers, etc.
+el diseno fisico depende mucho del sgbd
+db2 es una de las unicas que expone al usuario todas estas cuestiones fisicas
+el diseno fisico consiste en la implementacion de las estructuras apropiadas para los archivos
+
+Objetivos del diseno fisico
+
+el tiempo de respuesta es sumamente importante y debe minimizarse. Por ej en sistemas online, 
+las especificaciones de amazon o netflix, or ejemplo, esta definido en la base de datos.
+
+el aprovechamiento de espacio debe optimizarse
+
+y la productividad de las transacciones debe maximizarse tambien
+
+se deben especificar limites promedio y del peor de los casos de cada parametro como parte de los re
+quierimientos de rendimiento del sistema. 
+
+el rendimiento depende del tamano y numero de registros
+
+muchos sistemas incluyen utileria para supervision de datos, que incluyen estadisticas de rendmiento
+
+esto por ejemplo, podria decirnos: "sobran indices" o "falta x indice"
+
+todas las herramientas tienen un modulo optimizador de queries. el optimizador aprende de lo que 
+hace el sistema, y a partir de esos datos toma decisiones. 
+
+los cambios de modelos fisicos son casi siempre, solo posibles al inicio de la creacion del sistema. 
+
+tenemos que saber el numero de consultas, la frecuencia, las restricciones de tiempo, etc
+
+Para cada consulta:
+	tablas que intervienen, campos sobre los que hay condiciones de seleccion, y reunion o  enlace, todo tipo II
+	y los campos cuyos valores obtiene la consulta. 
+
+	los indices mejoran la velocidad de queries, pero por otro lado, disminuyen la velocidad
+	de alteracion de los elementos. 
+
+	analisis de frecuencia esperada: regla de pareto. 
+	
+	analisis de frecuencia esperada de operaciones de actualizacion:
+		se puede modificar la estructura de acceso. 
+
+a grandes rasgos, el diseno fisico es
+
+analisis de transacciones y consultas, estudio de las alternativas, decisiones de diseno fisico, estrucutrads de almacenamiento y caminos de acceso
+afinamiento, y luego implementacion. 
+
+buscar scan vs index vs hash vs cluster para eleccion de estructura de almacenamiento
+
+Tecnicas de agrupamiento de acceso y de tablas son cosas distintas. 
+
+Exploracion:
+
+Tablas de agrupamiento: las tablas estan fisicamente unidas por sus claves en el disco. Util cuando
+hay joins o cosas asi
+
+Particionamiento: es una tabla enorme que la separo en distintos discos. Sirve para poner aparte las
+cosas que mas usamos. 
+
+Afinamiento:los dispositivos de alta velocidad para tablas frecuentemente examinadas.
+	podemos tambien modificar los tamanos de buffer de memoria.
+
+Cluster index, es un agrupamiento...
+
+El indice hay que ponerlo donde claramente se necesita. Hay wizards que detectan donde conviene 
+poner indices.
+
+Los indices trabajan con busqueda binaria, funcionan con btrees.
+
+evitan el scan. El indice trabaja con punteros a registros. 
+
+El indice conviene usarlos en tablas grandes.
+
+Al crearlos sobre columnas, conviene hacerlo donde usamos clausulas WHERE, order by, etc
+Suelen ser atributos de reunion de varias tablas
+y con gran variedad de valores. 
+
+Hashing: similar a indice pero no necesita una tabla secundaria. Un valor de entrada tiene un y 
+solo un valor de salida. Es mucho mas rapida. No se puede usar siempre. 
+
+Usar para frecuentes accesos individuales aleatorios. 
+Tienen  que ser valores discretos. Solo anda por igualdad. 
+
+Actualizaciones infrecuentes de la hash key. 
+
+No usar accesos que requieran ordenacion, o busqueda de patrones, se debe evitar colisiones
+
+Arquitectura del motor de almacenamiento de MySQL
+
+MyISAM: backward compatibility.
+
+InnoDB: standar
+
+MEMORY: proporciona tablas en memoria. El procesamiento se deberia en memoria. 
+
+MERGE: permite mezclar tablas myisam, memory, etc.
+
+EXAMPLE: no guarda nada, es para hacer pruebas. 
+
+NDB Cluser: usado para mysql cluster
+
+ARchive: guardar grandes cantidades de datos sin indices 
+
+___
+InnoDB:
+tenemos un tablespace, donde... buscar esto
+y un log
+
+Tablespace tiene segments, segments tiene extents, extents tiene pages
+
+InnoDB components: on Memory:
+
+InnoDB buffer pool: hasta un 80 porciento de la memoria fisica. si esto uno no lo toca, toma todo
+lo posible. este almacena los datos
+
+Change buffer: aca hay datos de cambios e indices
+
+Redo log buffer: el log tiene buffer.
+
+system tablespace: metadatos de tablas y otros objetos
+
+redo logs: si se cambian los datos del buffer, aca se almacenan antes de almacenarlos en disco
+	se rehace lo que no se termino de hacer
+undo tablespaces and logs: se deshace lo ultimo que se hizo, un rollback inmediato. 
+
+

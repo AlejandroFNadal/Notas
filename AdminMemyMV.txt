@@ -1,0 +1,29 @@
+Guia de TP
+
+2) Sea un sistema de particiones variables con 4200 palabras
+de memoria fisica.
+
+Tenemos 3 bloques de codigo/datos
+
+Direccion Inicial - Longitud
+1000               1000
+2900               500
+3400               800
+
+anadir bloques de 500 1200 y 200
+            X               X        X
+|________|________|_______|______|_______|
+0        1000    2000    2900    3400    4200
+
+
+              X     500      X       X
+|________|________|_______|______|_______|
+0       1000      2000   2900   3400     4200
+
+en ese caso, no se compacto.
+
+    X                X500    X       X
+|________|________|_______|______|_______|
+0       1000     2000    2900    3400    4200
+
+aca si se compacta. Esto queda como ejemplo

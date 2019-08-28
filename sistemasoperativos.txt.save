@@ -1,0 +1,419 @@
+Bibliografia: Sistemas Operativos, Quinta edicion, mexico, prentice hall hispanoamericana 2001
+
+Sistema Operativo:
+	Niveles:
+		Usuario
+		Aplicacion
+		Sist. Op
+		Hardware
+Sist Op: elementos relacionados que funcionan con un fin determinado, el cual esta relacionado a 
+la conduccion y operacion del HW
+Es muy profunda la idea de que los sistemas operativos deban acompaniar la evolucion de los 
+clientes y aplicaciones y del HW. 
+	
+	Funciones generales: 
+		Manejar los recursos de hw
+		ofrecer servicios
+		gestionar I/O
+	Aparte, deberian ser:
+		Portables
+		Debe ofrecer capacidad de interoperacion e interconectividad
+		Debe incluirse seguridad y proteccion
+	Debe manejar
+		Procesador
+		Memoria principal
+		Modulos de ES
+		Interconexiones
+	
+	Esquema CPU:notas:
+		..
+	Registros mas importantes:
+		Registros de control y estado: el sistema necesita controlarlos para la
+		ejecucion de las aplicaciones
+		Registros visibles por el usuario: pueden ser referenciados por el lenguaje de maquina
+		estan disponibles para el control y ejecucion de las aplicaciones
+	Tipos de instrucciones
+		-Procesador Memoria
+		-Procesador-E/O:Aunque siempre va de I/O a memoria, siempre el procesador esta en
+		el medio. Aqui se incluyen las interrupciones:
+			Tipos de interrupciones:
+				-Programa: mala asignacion de variable
+				-Reloj
+				-E/S
+			Tratamiento de interrupciones
+			-Hay un modulo que analiza la interrupcion y determina una accion
+			RDSI es el programa que hace esto. 
+			Pueden venir muchas interrupciones a la vez. Despues de tratar 
+			una interrupcion, se comprueba la existencia o ausencia de interrupciones,
+			y si no, solo ahi vuelve al codigo de aplicacion. Ademas, las interrupciones
+			tienen distintas prioridades
+		-Tratamiento de los datos
+		-Control
+	Multiprogramacion:
+	Jerarquias de Memoria
+	Los dispositivos de almacenamiento a largo plazo tambien poseen buffers. 
+	Cercania de referencia: todas las instrucciones generalmente tienden a agruparse. Al
+	estar agrupadas, en un  futuro muy cercano probablemente las vuelva a usar. 
+	Mem.Cache: transparente para el sist. operativo.
+
+	Modulo I/O: Consta de un dispositivo controlador y el dispositivo en si. 
+	Archivos: Entidad abstracta que nos permite almacenar datos y poder transmitirlos tambien.
+	Cada kernel tiene un sistema de archivos. Buscar inode.
+	
+	Evolucion y tipos de SO
+		Basandonos en formato de ejecucion de tareas:
+			-Monousuario monotarea:antiguamente en centros de computo, ahora solo en 
+			procesos industriales y iot
+			-Monousuario multitarea:
+			-Multiusuario multitarea (timesharing)
+			-Multiprocesadores
+		Entorno de ejecucion y tipo de servicio:
+			Tiempo Real: aeronaves, reaccionar a eventos de la realidad
+			Sistemas de mano: celulares(funciones de comunicacion)
+			Sistemas Multimedia (OpenELEC, Open Embedded Linux Entertainment Center)
+			Embebidos o integrados: son parte de algun dispositivo.
+			De RED (NOS): coordinan y manejan las actividades y recursos de una red
+				de computadoras
+			Distribuidos: Entes interconectados que trabajan entre si, prestandose 
+			servicios unos a otros, pero desde el usuario, es un sistema unico. 
+				Software fuertemente acoplado en hardware debilmente acoplado.
+Kernel:componente del so que se carga en memoria real desde el principio y siempre debe estar ahi
+el kernel se asegura de que cada proceso tenga su espacio de memoria y se le asigne tiempo de 
+procesador
+
+para ello se usan las API: interfaz de programacion de aplicaciones
+Las API estan formadas por procedimientos que pertenecen al nucleo, pertenecen a un proceso cualquiera
+Invocar a un procedimiento se le suele llamar "llamada al sistema"
+
+Las llamadas al sistema suelen ser una instruccion de maquina que provocan interrupciones. 
+
+Toda operacion con dispositivos depende de su implementacion. Para poder mejorar el acceso a los
+dispositivos, el kernel tiene distintas formas de interactuar con los dispositivos, mediante
+lo que se conoce como drivers, codigo fuente que se conecta con el dispositivo en si. En ese 
+codigo fuente, tenemos clases, como ser, clase disco, que permite acceder a todos los discos. 
+
+Los drivers pueden ser cargados on demand.
+
+Sistema de archivos: permite estructurar los discos en jerarquias, donde aparecen dos elementos como minimo
+directorios, y archivos.
+Multiplexa un disco de tama;o fijo en tama;os variables. 
+
+makelinux.net/kernel_map
+
+Estructura simple o monolitica:
+	gran cantidad de funciones, que se combinan en un unico nivel. 
+	se solicitan los servicios con los parametros sobre lugares definidos registros o pilas
+	se pasa de modo nucleo a modo supervisor
+	se transfiere el control del so
+	se examinan los parametros
+	implementa el procedimiento
+	devuelve el control al usuario. 
+Estructura en niveles:
+	serie de niveles, que posee un subconjunto de funciones, el nivel n+1 depende el n para
+	resolver los problemas
+Maquinas virtuales:
+	Se abstrae el hw, y se proporcionan varios entornos. Cuesta asegurar que el 
+	almacenamiento secundario este disponible. 
+	De proceso: necesitan un s.o. host y encima de eso se instala la maquina virtual.
+	De sistema: corren sobre un hypervisor, el cual corre directamente sobre hw
+Modelo cliente-servidor: el kernel se mantiene minimo, los servicios los pone en una capa
+	superior. Los servicios son servidores. El kernel maneja mensajes entre los clientes y los
+	servicios disponibles
+	Protocolos asimetricos,...
+Cliente servidor se suele referir a un modelo logico. 
+	
+	arquitectura de 3 niveles. la misma que de gestion. duh. :-(
+
+Un proceso consiste en instrucciones, un estado de ejecucion en un momentod ado, la memoria de 
+trabajo.
+
+Una imagen de proceso posee datos de usuairo, programa de usuario, la pila de sistema, y el 
+bloque e control.
+
+Los procesos pueden ser de kernel o de usuario. 
+
+Su ciclo de vida puede ser
+	intensivo en uso de procesador
+	intensivo en entrada salida
+Bloque de control de proceso
+	cuando se crea un proceso, por cada proceso que se crea, se crea un bloque de control
+	de procesos. Ese bloque almacena un identificador del proceso, si fue creado por otro 
+	proceso, el estado, los privilegios, la gestion de memoria, propiedades de los recursos,
+	inicializacion. 
+Ciclo de vida
+	creacion
+		nuevo trabajo por lotes: proceso que continua hasta terminar
+		conexion interactiva 
+		proceso creado por el so para dar servicio
+		generado por otro proceso
+	terminacion: 
+		normal
+		anormal
+process status: 
+	executing
+	idle: can be waiting for being asigned to a process.
+5 states model:
+	new: it asks for system access. This is long term
+	ready: waiting for processor time
+	running:duh
+	blocked: it is waiting for an event
+	exit
+ready-running-blocked, that is short term
+
+in the newer models, it has a suspended state. They do not compete for processor time. 
+it can be suspended and blocked, or ready and suspended. this is done by the midterm planner
+
+Memory Hierarchy
+
+the memory manager must abstract and mantain the memory hierarchy. 
+it must reubicate processes, protect them, logically organize it, share libraries and resources, and physically organize it as well.
+
+when we are using a monouser monotask system, we have an user program seccion and then a seccion for
+the operative system.
+We have a registro valla, it separates the ram operative system and the user program. 
+
+This architecture can do swapping, that is to put all the stuff not needed for io operation, in the disk
+then, the data from another process is loaded in the memory, saving the little bit needed for the
+io
+
+cpu usage = 1-(% wait IO)^n, n number of processes.
+
+In multiprogramming, there are two ways to organize the memory:
+
+1- fixed partitioning of ram
+2- dynamic paritioning of ram
+
+Internal fragmentation happens when a process has more memory than it is needed. it will always happen 
+in fixed partitioning, and it may happen in dynamic partitioning as well.
+
+with dynamic partitioning, we can have single or multiple input queues.
+
+each process has two registers, one for the inferior limit, and one for the superior limit. 
+in the hw, there are only two registers, and those are swapped with the current process. 
+
+variable partitions: the process receive only the mem quantity that it demands on start. 
+
+external fragmentation happens when we have free memory that cannot be used because of
+the memory managment strategy. From time to time, the memory is 'compacted" so it solves
+that issue
+
+with variable partitions: we also need registers to keep the memory protected. We need a base and a
+limite, the limite is added to the base. Then, they are simulated to start in 0, as with static. 
+
+Bitmaps: each memory position used was represented with a 1, not used ones where represented with a 0
+
+d1|0|5|->d2|5|95|->null
+
+pointers join the empty spaces
+
+when a process asks for space, you must go through the linked list till u find enough memory
+
+there can be criteria to choose spaces, the first one where fits, the worst where fits, the best that fits
+
+bitmaps and lists are different strategies.
+
+Reasigning directions:
+	if we use 
+
+buddy system and reasinging directions. 
+____________________________________________________________
+SCRUM
+___________________________________________
+Permite obtener resultados tempranos y permite adaptarse a os cambios en los
+requisitos. Desarrollo de software mediante iteraciones mas reuniones a lo
+largo del proyecto. 
+
+product backlog,historias de usuario, es la lista de cosas para hacer
+
+calendar con todo, doing and done
+
+Sprint planning
+
+Daily: identificar desviaciones
+
+Sprint review: ver si lo que se hizo en el sprint esta bien
+
+retrospectiva: ver como estamos trabajando como equipo. 
+	estrella de mar
+		estamos haciendo
+		hacer mas
+		cosas que hay que comenzar a hacer
+		hacer menos
+		dejar de hacer
+tabla de habilidades	
+
+___________________________________________
+Memoria Practica
+__________________
+Asignacion -> Contigua    -> Particiones Fijas
+	  |		  -> Particiones Variables
+	  |                                              _
+	  |-> No contigua -> Paginacion                   | Memoria Virtual
+			  -> Segmentacion con paginacion  |
+			  -> Paginacion con segmentacion  |
+
+Contigua: particionamos en n particiones. Se definen los tamanos de cada una. Lo malo es que 
+todo proceso tiene un tope maximo en tamano. En ocasiones,se desperdicia memoria debido a que
+las asignaciones no siempre eligen la opcion mas optima. Esto es la fragmentacion interna
+
+First fit: si hay hueco, se asigna.
+Best fit:comparo tamano del proceso vs tam de particion. El que mas se acerque sera el seleccionado
+	se usa para particiones fijas
+worst fit: elige el hueco mas grande disponible. se usa para particiones variables. 
+_________________________________
+Contigua:Podemos tener una lista de procesos a asignar o una lista por particion
+_______
+con asignacion de memoria contigua, no es recomendable hacer reasignacion dinamica, y no se 
+puede hacer reasignacion estatica
+
+_____________
+*Buddy System
+
+Ejemplo
+
+Memoria disponible: 1024kb
+
+primero debemos guardar 20kb
+
+1024-512-256-64-32
+
+
+...
+
+El buddy system genera fragmentacion interna, pero tambien facilita que crezca y a la vez
+es muy facil hacer y unir las particiones generadas.
+
+Carga estatica, dinamica, basicamente, es la diferencia entre decidir el espacio en tiempo
+de ejecucion o en tiempo de compilacion. 
+
+Estados de procesos
+
+Nuevo -> listo <-> en
+	 ^   ^	ejecucion
+|      /     \      |
+v     /       \      |
+Listo y        \     |
+suspendido      \    |
+   ^             \   |
+   |              \  |
+Bloqueado y	   \ v	
+suspendido   <->   Bloqueado
+
+a grandes rasgos: cache es muy rapida, pero esta limitada por su tecnologia
+cuando pasamos de cache a memoria principal, la limitacion es la velocidad de la memoria principal
+
+solo se cargan en memoria los modulos necesarios para la ejecucion actual. 
+
+*Paginacion Simple
+
+dividir la memoria en particiones fijas del mismo tamano, llamadas paginas.
+dada una memoria fisica con 8 paginas, 
+Cada pagina tiene 4 posiciones de memoria
+(esto es un fucking ejemplo, no lo tomes literal)
+La cpu genera dos campos, el de pagina y el de desplazamiento. El desplazamiento se mueve
+dentro de la pagina. 
+Existe una tabla de paginas. La tabla de pagina tiene el id de pagina asociada a posiciones
+fisicas de memoria. Las paginas se asignan completas. Los procesos pueden separarse en paginas distintas, no contiguas.
+ejemplo, un proceso necesita 7 direcciones, entonces le asignamos dos paginas, no necesariamente contiguas. La tabla de pagina tiene aparte otro campo que indica si la pagina existe o no. 
+
+Por cada proceso creado, en paginacion, se crea el pcb y la tabla de paginacion del proceso. 
+tendremos dos registros, uno de direccion logica y otro de direccion fisica. cada proceso tiene su pagina. el sistema requiere mantener otra 
+estructura para poder saber que esta disponible y que no lo esta. 
+
+En el pcb tenemos
+
+ID
+Estado
+Reg. CPU
+Memoria asignada: para paginacion, es el puntero a la tabla de paginas. 
+
+Para acceder a la tabla de paginas, en la posicion justa, sumamos el puntero de la tabla de
+paginas con el digito de pagina de la direccion logica.
+
+ya no podemos hablar, entonces, de un tiempo de acceso a memoria de 800 ns. 
+tenemos ahora, un tiempo efectivo de acceso de memoria, lo que es dos veces el tiempo
+de acceso a memoria, porque primero accedemos a la tabla de paginas y lde ahi recien a la direccion
+
+*paginacion con memoria asociativa. 
+
+se pone en la cache, una parte de las entradas de la tabla de paginas, posiblemente, las 
+que mas usamos.  
+
+primero, chequeamos si la tabla de paginas que necesitamos esta presente en la cache. 
+si no lo esta, es un tlb miss, y vamos a la tabla de paginas del proceso en memoria. 
+
+el tiempo de acceso de la cache (memoria asociativa)
+
+la tabla de paginas de un proceso y lo que este en cache se mantienen actualizados en paralelo. 
+
+en el caso de un ma miss, tendremos un tiempo de acceso de el tiempo de acceso de memoria 
+asociativa mas la suma del doble del tiempo de acceso a la memoria estandar
+
+llamaremos hit radio al porcentaje de tlb hits. 
+
+La proteccion de memoria en la paginacion se hace con el bit de valido/invalido
+
+en la tabla de paginas se pueden anadir bits de proteccion, lo que aclara niveles de comparticion
+de elementos.
+
+el inconveniente de la paginacion simple es que podemos tener cientos de miles de paginas
+simples, y cada proceso tiene una tabla con todas esas entradas. 
+
+Para solventar esto, podemos tener paginas de paginas. Tendremos un campo de direccion
+donde en lugar de tener un solo campo de pagina, tendremos dos campos de pagina, de nivel 1 y de 
+nivel 2.
+
+El campo de pagina 1 accede al primer nivel. una vez que entramos al siguiente nivel, le pasamos el segundo registro y esto nos lleva a la memoria finalmente. tenemos 3 campos para la busqueda, y se almacena la tabla externa  en memoria solamente.  
+
+*Segmentacion
+
+tenemos un registro que apunta a la tabla de segmentacion, la cpu tiene un registro para acceder
+la segmentacion protege el segmento con permisos.
+
+esto tengo que buscar mejor, aca dicen que la diferencia es que en la segmentacion pero 
+se basa en particiones variables, pero no requiere que el proceso este contiguo en memoria. 
+
+tablas de pagina invertidas y paginacion mas segmentacion
+
+*Planificacion de Procesos
+
+Tenemos un proceso que se esta ejecutando. Cuando lo va a liberar, ya sea por entradasalida o porque tiene que volver a la cola de listos. 
+Se actualiza el PCB del proceso, se lo saca del cpu. Se trae el pcb del registro que se va a usar 
+al procesador y se lo pone en estado de ejecucion. 
+
+Criterios para la planificacion:
+
+Tiempo de retorno es todo el tiempo que pasamos entre el estado listo y de ejecucion.
+
+El tiempode espera, es el tiempo que esta entre el estado de listo.
+
+El tiempo de respuesta, primera respuesta del sistema, aunque sea un "Cargando"
+
+El grado de sobrecarga: todos los recursos que utiliza el procesador.
+
+Para los algoritmos a analizar, los tiempos a usar son los de retorno y espera. 
+
+Tiempo de retorno, momento en el que proceso abandona la cpu - tiempo de llegada del proceso 
+
+el tiempo de retorno promedio/n
+
+Tiempo de espera es el tiempo de retorno menos el tiempo de ejecucion. 
+
+Sirven para poner objetivos sobre los planificadores. 
+
+*Algoritmos de planificacion
+
+Deben intentar otorgar a cada proceso una parte justa de la cpu.
+
+Sistemas de procesamiento por lotes: maximizar el numero de trabajos por hora, mantener la cpu ocupada todo el tiempo.
+
+Sistemas interactivos: minimizar el tiempo de respuesta
+
+Sistema de tiempo real
+
+Algoritmos de planificacion:
+
+	en sistemas de procesamiento por lotes:
+		fifo
+		el mas corto primero
+		srtf:

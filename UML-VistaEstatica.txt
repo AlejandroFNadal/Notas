@@ -1,0 +1,78 @@
+UML-Vista Estatica
+
+Clasificadores
+___________________
+
+Objeto
+	Concepto discreto que posee
+	-Identidad
+	-Estado
+	-Atributos
+	-Operaciones
+
+Representacion UML
+___________________
+|                  |
+| etiqueta: clase  |
+|__________________|
+
+Estereotipos
+
+Entidad: circulo subrayado
+Frontera: |--O
+Control: O
+	los objetos de control hacen servicios para otros objetos
+
+Algunos otros estereotipos son, por ej, bases de datos
+Operaciones
+
+Definen un servicio ofrecido por un objeto
+ej
+	unPedido.agregar(unProducto)
+	unaCuenta.depositar(unMonto)
+	unaVentana.abrir()
+
+Metodo
+
+Implementacion de una operacion
+
+
+Metodos: Concretos
+	 Abstractos
+
+Atributos
+-Describen caracteristicas de un objeto
+-Son tambien objeto
+
+Notacion
+
+___________________
+Clase             |
+__________________|
+atributo: clase;  |
+__________________|
+operacion(porm:clase):retornoclase
+_________________________________
+
+Interfaz
+
+Clasificador que define un protocolo de comporta
+miento pero no su implementacion
+
+___________________________                
+<<interface>>                            |
+Coleccion                                |
+___________________________              |Selectionlist
++Primero()                               |________
++Ultimo()                 |     <<use>>  |Modelo 
++Siguiente()              |<-------------|Coleccion
++Anterior()               |              __________
+___________________________
+
+de los tipos vector, arraylist, dblist.
+
+Visibilidad de atributos y operaciones
+
++Publico
+-Privado
+#Protegido
