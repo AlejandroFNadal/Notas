@@ -1,0 +1,65 @@
+UML-VistaEstaticaRelaciones
+
+Relaciones:
+	Entre Instancias
+	Entre clases
+Asociacion:
+	Conexion Semantica entre instancias(objetos)
+	Proporcionan conexiones a traves de las que interactuan los objetos
+	Enlace: instancia de una asociacion
+	Implica que una clase conoce a instancias de la otra clase. 
+	Toda asociacion posee direccion. 
+	Representacion:
+			trabaja para >
+		Empresa ------------->Persona
+				    |
+                                    |
+				    V
+				Cardinalidad
+
+Asociacion como clase
+	
+		Teatro ----------------- Obra
+				|
+				
+				|
+			________________
+			Presentacion
+			_______________
+			Fecha
+			Hora
+			_______________
+Asocacion calificada
+		
+		|Presentacion|butaca|----------|Entrada|
+                              1                1..*
+Asociacion Ordenada
+
+		|Coleccion|------------------------|Elemento|
+			{ordered}                 *
+
+
+Agregacion
+	
+	Asociacion con mayor fuerza semantica
+
+	|Coleccion|<>-----------|Libro|
+                   *           *
+
+Composicion
+
+Agregacion  con mayor fuerza semantica
+
+-Dependencia existencia
+-Dependencia Exclusiva
+-Pertenencia fuerte (es parte de...)
+-El compuesto gestiona sus componentes(relativo!)
+
+	|Factura|<<>>----------------|Linea|
+                 *                  *
+
+
+Generalizacion
+Dependencias
+
+
