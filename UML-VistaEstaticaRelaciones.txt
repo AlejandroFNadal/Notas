@@ -18,7 +18,8 @@ Asociacion:
 				Cardinalidad
 
 Asociacion como clase
-	
+
+Datos que pertenecen a la relacion y no a ninguna de las clases	
 		Teatro ----------------- Obra
 				|
 				
@@ -31,10 +32,14 @@ Asociacion como clase
 			_______________
 Asocacion calificada
 		
+Existe un atributo en la relacion que varia atributos en Entrada. Si la butaca
+es, por ejemplo, platea, va a tener un proceso que va a editar el precio en 
+la entrada
 		|Presentacion|butaca|----------|Entrada|
                               1                1..*
+			A			 B
 Asociacion Ordenada
-
+Simplemente indica que esta ordenado o no una coleccion.
 		|Coleccion|------------------------|Elemento|
 			{ordered}                 *
 
@@ -54,12 +59,32 @@ Agregacion  con mayor fuerza semantica
 -Dependencia Exclusiva
 -Pertenencia fuerte (es parte de...)
 -El compuesto gestiona sus componentes(relativo!)
-
+	esto ultimo no necesariamente es cierto, puede haber otro objeto que 
+	esta encargado de armar el objeto
 	|Factura|<<>>----------------|Linea|
                  *                  *
 
 
 Generalizacion
+	Relacion taxonomica entre una descripcion general y otra mas especifica que la extiende
+	Propositos: herencia:descripcion incremental
+		    principio de substitucion -> operaciones polimorficas
+
+	Herencia
+		relacion entre clasificadores
+		relacion "es un tipo de "
+		operaciones
+			agregado: se pueden agregar nuevas operaciones
+			redefinicion: o redefinir operaciones previas
+		atributos
+			agregado
+			reemplazo
+		dos tipos de herencia
+			simple
+			multiple
+		herencia
+			de implementacion
+			de interface
 Dependencias
 
 
