@@ -432,3 +432,21 @@ Tipos:
 
 Estados: s significa sleep
 	 R running
+
+
+Algoritmos de caracter expropiativo:
+	Permiten que el planificador, en cualquier momento a traves de interrupciones, maneje la asig
+	nacion de recursos. Cuando necesita tomar recursos, los toma y los manda a la cola que corresponde. 
+Ejercicios:
+	2 partes:
+		datos de entrada:
+			idtrabajo, tiempo de arribo, y tiempo de ocupacion de recurso
+			tambien tiene que decir que algoritmos aplicamos, ej
+			FCFS, ROUND ROBIN, SJF, SRTF
+		asignacion de recursos:
+			memoria
+			procesador
+	Colas:
+		con retroalimentacion
+			
+		sin retroalimentacion
