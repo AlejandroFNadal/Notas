@@ -506,5 +506,20 @@ Politicas de reemplazo
 		Bajo demanda
 		Limpieza adelantada
 	Control de carga
-		
+		Hiperpaginacion: perdemos mucho tiempo metiendo y sacando paginas. 
+		se puede prevenir mediante:
+			modelo de localidad:
+				identificar en una ventana de tiempo, cuales son las paginas 
+				que el proceso viene utilizando. 
+			working set: se basa en el modelo de localidad.
+				le damos a cada proceso un conjunto de paginas que le pertenecen y
+				no las reemplazamos. 
+			Frecuencia de fallo de pagina: se define una frecuencia de fallo de pagina 
+				superior, y otra inferior. Todo proceso que este dentro de esos limite
+				se esta ejecutando correctamente. Si el proceso excede el limite, se 
+				le asignan mas paginas y por otro lado, si esta por debajo, se le dan
+				menos
+			Un sistema que utiliza un determinado tomano s, con tamano de pagina p, 
+			con cada entrada de pagina con tamano e, tam es m, tama es ma, hr es ..
+				sobrecarga=(se)/p + p/2
 
