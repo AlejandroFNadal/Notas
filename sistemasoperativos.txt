@@ -429,6 +429,16 @@ Tipos:
 	Indagar: 
 		trabajo mas corto a continuacion, planificacion garantizada, por sorteo, por partes
 		equitativas, para sistemas en tiempo real.
+		Planificacion garantizada, divide la capacidad de la cpu de forma equitataiva para cada proceso
+		Por sorteo, literalmente, se sortean quantums de tiempo entre los procesos. Para prioridades,
+		los procesos con mayor prioridad reciben mas boletos.
+		Por partes equitativas: divide la potencia de la cpu entre los usuarios de forma equitativa
+
+		SRTF posee una historia reciente, e hisoria pasada
+		tenemos un alfa, que representa la ponderacion de las historias.
+
+		tiempo de la proxima irrupcion de proc i= alfa*historia reciente + (1-alfa)*historia pasada
+
 
 Estados: s significa sleep
 	 R running
@@ -450,3 +460,51 @@ Ejercicios:
 		con retroalimentacion
 			
 		sin retroalimentacion
+
+--Calcular el team para sistema que dispone de memoria cache y bit M
+
+TAM=150ns  TAMA=20 ns  tsfp =7500000 ns HR= 80%
+
+TEAM=HR*(tama+tam)+(1-HR)[(1-0.075)(TAMA+2TAM)+(0.075(0.75(TAMA+2TAM+TSFP m=0)+(1-0.075)(TAMA+2TAM+TSFP m=1))]
+
+Bollati
+
+Politicasde planificacion bajo demanda
+
+	Ninguna pagina se trae a memoria a menos que sea solicitada
+
+Planificacion adelantada
+
+	se trae esa pagina necesaria y algunas mas
+Politicas de reemplazo
+
+	FIFO:ver ppt, los 4 fallos son al inicio porque al principio no estan
+		
+	Algoritmo optimo:4 fallos de pagina tipicos, la pagina victima es la que falta mas para necesitar.
+		sirve para comparar porque no tenemos forma de predecir exactamente las paginas a 
+		recibir
+	LRU: menos recientemente usado: la victima es la que hace mas tiempo que no se accede
+		Implementacion: mediante una pila implementada como lista doblemente ligada
+		con punteros al inicio y al final. Cuando se referencia una pagina, se va al tope.
+		Otra forma es con un bit R en la tabla de pagina, Cada vez que hay lectura o
+		escritura sobre la pagina, se aumenta el r de esa pagina. cada tanto se limpia el bit r
+		Se puede combinar el bit R con el bit M para analizar las conveniencias, M se activaria
+		solo en escritura, R en lectura y escritura
+		Tambien podemos tener buffering, un algoritmo que verifica si el bit M esta en 0.
+		Si el bit M no esta en 0, se lo asigna a un pool de paginas modifcadas
+		Si esta en 1, se asigna a pool de paginas libres. 
+
+		Revision:
+			El algoritmo de algunas versiones de linux es LRU con tabla.
+	Tamano del conjunto residente
+		Fijo : solo puede usar ambito local
+		Variable
+	Ambito de reemplazo
+		Global
+		Local
+	Politica de limpieza
+		Bajo demanda
+		Limpieza adelantada
+	Control de carga
+		
+
