@@ -1,0 +1,8 @@
+estructura de datos de entrada:
+
+cantproc: int
+
+cada proceso
+
+	idproc
+	
