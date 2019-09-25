@@ -1,0 +1,29 @@
+Herrmaientas de modelado
+1) Diagramas de CU
+2) Descripcion textual
+3) Otros:
+	-Maquina de estados
+	-Diagrama de actividades
+Descripcion textual
+Tipos:
+	-Breve
+	-Informal
+	-Completo
+Plantilla
+	usecases.org
+	ZD-caso de uso
+	actores
+	precondiciones
+	postcondiciones
+	escenario principal
+	escenarios alternativos
+	requisitos especiales
+Formato
+	Una columna
+	Dos o mas columnas
+
+Relaciones entre C.U.
+	Permiten estructurar C.U.
+	Inclusion: secuencias comunes
+	Extension: casos excepcionales
+	Generalizacion: herencia

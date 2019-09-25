@@ -1,0 +1,142 @@
+Ejecucion concurrente: un proceso a la vez
+ejecucion paralela: n procesos a la vez
+
+Los procesos son manejados por el S.O, en cambio los hilos son manejados por los procesos. 
+Los hilos tienen memoria compartida con sus hilos hermanos que forman el proceso
+
+Los procesos tienen memoria privada, necesitan mecanismos de comunicacion para compartir informacion.
+
+Un proceso puede crear un nuevo proceso, el control pasa al sistema operativo, el so crea el proceso
+y el control vuelve al proceso. En cambio, cuando se trabaja con hilos, no es necesario un cambio de modo
+
+Los movimientos de los hilos casi siempre son mas rapidos que los procesos, debido a los cambios
+de modo.
+
+Ejemplo: los procesadores de texto, que hacen distintas actividaes, se hacen en hilos distintos. 
+
+Los hilos pueden estar a nivel de usuario o a nivel de nucleo. Si los hilos se ejecutan a nivel
+de usuario, para el kernel es todo una sola cosa y por ende, si hay un problema en un solo 
+hilo, todo se jode. Pero en esto,no hay que cambiar de modo para pasar de un hilo a otro.
+
+En cambio, cuando esta a nivel de kernel, para cambiar de un hilo a otro, es necesaria la intervencion
+del sistema operativo, un cambio de contexto.
+
+User level threads, every change is done through the code made in the app, the app has all the 
+thread managment techniques and methods. So, the changing thread criteria is chosen by the 
+developer. But this kind of technique, user level threads, the kernel cannot put the threads in 
+different processors, this is important in multiprocessors' architecture
+
+Processes can be executed sequencially or in paralel (concurrent mode) 
+
+ The threads have a input set and an ouput set.
+
+ The threads have a input set and an ouput set.
+
+
+There are concurrent conditions to be met.the conditions are
+	they must not read the same data at the same time and, also, they cannot write the same
+	place at the same time. The intersection between the sets of the threads must be null.
+
+	R1 and W1 = null, if true, criteria is met
+	
+	a precedence graph is used to represent whether processes or threads are executed 
+	concurrently
+
+issues with paralelism:
+	deadlock
+expressions of these
+	fork and join. fork divides control flux in two threads, join, duh.
+	
+	cont=2
+	s1
+	fork e
+	s2
+e	s3;
+	
+s1 and s3 can be executed in paralel
+continuando:
+u	join cont=cont--
+		if cont != 0 then
+			select next process of ready list
+		else
+			
+			executes s4
+	cont:=2	
+	s1
+	fork e
+	s2
+	goto u
+e 	s3
+u	join cont == cont--
+	
+in this strategy, the process below the graph will be blocked, because they need the data that 
+the join provides
+
+expression cobegin/coend/ parbegin/parend
+
+	begin
+	s1
+	cobegin
+	s2
+	s3
+	s4
+	coend
+	s4
+	end
+
+the same with fork join
+
+	cont=3
+	s1
+	fork e1
+	fork e2
+	s2
+	goto u
+e1	s3
+e2	s5
+u	join cont
+	s4
+
+ejercicios power
+
+	resultado
+	s1
+	cont=3
+	fork l1
+	s2
+	fork l2
+	s4
+	goto u1
+l2	s5
+	goto u1
+l1	s3
+u1	join cont
+	s6
+
+s1
+cobegin
+	s3
+	begin
+	s2
+		cobegin
+			s4
+			s5
+		coend
+	end	
+coend
+
+modified graph where s3 aims to s5
+	s1;
+	contint=2
+	cont=2
+	fork l1
+	s2
+	goto ui
+l1	s3
+ui	join contint;
+	fork l2
+	s5
+	goto u2
+l2	s4
+	join cont
+	s6

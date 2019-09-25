@@ -1,0 +1,16 @@
+Generalizacion
+	Herencia
+	Principio de Substitucion de Liskow
+	
+	Principio de substitucion
+		Una instancia de un descendiente se puede utilizar donde quiera que este declarado el antecesor
+		Posibilita la implementacion de operaciones polimorficas en lenguajes tipados. 
+		Una instancia de un descendiente se puede utilizar donde quiera que este declarado el antecesor 
+		Posibilita la implementacion de operaciones polimorifcas en lenguajes tipados.
+		
+		Cuenta
+		
+		|
+		|
+		|
+		
