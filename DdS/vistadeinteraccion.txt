@@ -1,0 +1,33 @@
+vista de interaccion
+
+colaboracion
+
+es una comunidad de objetos cooperantes que interactuan entre si para implementar un compor
+tamiento en un contexto dado
+
+una colaboracion <<realiza>> la funcionalidad descripta por un caso de uso
+
+colaboracion
+	Aspecto estatico
+		Conjunto de roles y sus relaciones
+		Define el contexto
+	Aspecto dinamico
+		Conjunto de mensajes intercambiados por los roles
+		interaccion
+
+Interaccion
+	-Conjunto de mensajes intercambiados por los roles a traves de enlaces
+
+Mensaje
+	Comunicacion Unidirecional
+	Dos tipos
+		Senial: asincrono
+		Llamada: sincrono
+
+Herramientas de modelado
+
+	Diagrama de secuencia
+
+		Actor, interfaz, control, entidad
+	
+	Diagrama de colaboracion(comunicacion)
