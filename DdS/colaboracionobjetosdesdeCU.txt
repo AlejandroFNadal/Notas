@@ -1,0 +1,24 @@
+Como derivar una colaboracion de objetos a partir de un C.U
+
+1) Extender la descripcion del C.U. si es necesario
+2) Asignar una realizacion de C.U.
+3) Descubrir lista de clases candidatas
+	Analisis gramatical del C.U.
+	Substantivos -> clases candidatas
+	Verbos -> responsabilidades
+4) Depurar clases candidatas
+	homonimos/antonimos
+	clases sin responsabilidad clara
+	clases que son atributos de otras
+	clases sin relaciones con otras
+	clases sin estructura interna
+5) Asignar responsabilidades a las clases (patrones GRASP)
+	Que sabe
+	Que debe hacer
+	
+	PAtrones generales de asignacion de responsabilidades. 
+6) Diseñar la interaccion entre objetos
+7)Construir diagrama de clases
+8)Identificar mecanismos genericos necesarios
+
+
