@@ -1,0 +1,28 @@
+ejercicio 4k
+
+select count (distinct s.age)
+from student s;
+
+select s.age, s.standing, count(*)frecuencia
+from student s
+group by s.....
+
+
+select frecuencia.age, frecuencia.standing, frecuencia.cant
+from
+	(select s.age, s.standing, count(*) cant
+	from student s
+	group by s.age, s.standing as frecuencia
+where frecuencia.cant = select(max(f.cant1)
+			from(
+				select s.agre, s.standing, count(*) cant1
+				from student s
+				group by s.agre, s.standing) as f
+			where frecuencia.age = f.age
+
+declare a int
+set a = 3
+set a = 2
+/////
+
+set @a =2 , int
