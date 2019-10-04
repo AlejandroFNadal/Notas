@@ -1,0 +1,89 @@
+Muchos motores permiten tener separados usuarios por BDAs
+
+el tema de permisos se suele manejar con grant y revoke, respecto de objetos
+por ejemplo, 
+
+	grant update on titles(au_id) to user7;
+
+	seguridad descentralizada, yo puedo dar permisos si me los dieron, por ejemplo
+		with grant/admin option
+
+	roles: agrupamiento de funciones y usuarios. un rol tiene muchas funciones asociadas. 
+	vienen roles por defecto
+	se debe tener en cuenta:
+	
+	autenticacion: Linux y windows. 
+	authorization: manejo de usuarios proxy, permite decidir que tipo de usuario uno es fuera
+		de mysql
+	encryption: lo fisico esta encriptado per se. Se puede ademas encriptar un campo, solo
+		lo podria ver algun usuario con permiso.
+	firewall and auditing: limitar las comunicaciones
+
+authorization: privilegios administrativos, privilegios de manejo de scheme, tiempo de sesion
+	controles granulares sobre privilegios de usario, inclusive hasta una columna o fila. inclusive una celda
+	los usuarios, deberian tener acceso a las vistas, no a las tablas.
+	crear, modificar y eliminar las bases de datos, 
+	se debe tener cuidado de que privilegios se les da a un usuario porque en ocasiones,
+	se pueden asignar privilegios que requieren de otros para funcionar.
+
+	create user blablabla identified by password
+	grant all privileges on *.* to finleyuser
+	
+	tablas de privilegios:
+		user usuarios
+		db privilegios de nivel de bases de datos, usuarios y host
+		tables_priv privilegios de nivel de tablas
+		columns_priv columnas especificas
+		procs_priv
+
+		active directory permite delegar permisos de usuarios
+politicas de password en mysql
+
+	politica de expiracion de contrasenas
+		alter user jeffrey@localhost password expire
+		
+		la proxima vez que se quiera loguear, debe cambiar contrasena
+		
+		default_password_lifetime 180
+
+		password_history 6 no permite repetir las ultimas 6 contrasenas
+		
+		password_reuse_interval 365 no permite repetir contrasenas en un anio
+
+		se pueden pasar esos comandos a la creacion del usuario o a su alteracion
+
+		plugin de validacion de contrasena:
+			nos permite chequear que la contrasena no sea igual al nombre de usuario
+			que la contrasena no pertenezca a un diccionario, etc
+	encriptacion
+		ssl/tls encryption
+			entre los clientes de mysql y servidor
+			aplicacion entre maestro y esclavo
+		esto de arriba esta soportado por la community edition
+		data encryption
+			aes encryption
+		de la enterprise:
+			asymetric encrypt, generar claves publicas y privadas
+			derive session keys, digital signatures
+		enterprise backup
+			AES encrypt
+
+	auditoria de bases de datos
+		fips, hipaa, pcidss,sox, disastig, etc
+		autogeneracion de log generales, log de errores
+		
+		y enterprise audit, que tiene mucha granuralidad, se puede modificar en 
+		tiempo real, a nivel de tabla, etc etc,
+
+	inyeccion sql vulnerabilidad
+		
+		mysql enterprise firewall, que monitorea bd en tiempo real, generacion de whitelists
+			
+
+	Hardening:
+		mysql_secure_installation
+		firewall, incluyendo el de la pc
+		auditing y logging
+		monitorear cambios
+		administracion de usuarios, eliminar cuentas extra, concesion de privielgios minimos
+		auditoria de usuarios y privilegios
