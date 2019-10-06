@@ -1,0 +1,38 @@
+Vision del usuario vs Vision del programador del S.O
+
+es la forma en la que se almacenan archivos y directorios, adinistra los espacio y determina la
+forma en que todo sea eficiente y confiable
+establece una correspondencia entre los archivos y los dispositivos logicos.
+
+operaciones con un archivo:
+	crear, borrar, abrir, cerrar, leer, escribir, append, seek, get att, set att, rename
+los directorios pueden ser meros archivos que contienen direcciones de disco de otros archivos.
+
+Vision logica:
+	el almacenamiento lo vemos como un arreglo(fig 1). un archivo, se conforma como un 
+	conjunto de bloques distribuidos.
+
+desde el punto de vista fisico:
+	como encontramos la info, como hacemos que un usuario no pueda ver los datos de otro
+	usuario, y como saber que bloques estan libres.
+
+	un filesystem dispone de 
+		Metodos de acceso
+		Administracion de archivos
+		Administracion de almacenamiento auxiliar: this is most important
+		Integridad del archivo. 
+	Fig 2.
+	Fig 3.
+	Fig 4. (putas imagenes del orto)(sorry ale, dentro de unos meses vas a estar yendo y viniendo del cuaderno a aca)
+	
+	en windows, la implementacion de directorios, cada archivo tiene un tamano fijo de nombre y atributos
+	unix: cada nombre de carpeta esta asociada a un inodo
+
+	hay dos alternativas:
+		colocar  la longitud de entrada del archivo 1, los atributos, datos y caracter fde fin
+		esto se repite para cada archivo
+
+		la otra, es hacer listas enlazadas que apuntan a los archivos, donde tenemos el pu
+		ntero al archivo y luego los atributos. Son siempre iguales, para todos los 
+		archivos, para todos los bloques, lo que permite borrar facilmente cualquier ar
+		chivo.
