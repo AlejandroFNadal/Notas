@@ -1,0 +1,38 @@
+La tendencia es que las computadoras tengan un bus dedicado que conecte directamente los puertos con la cpu y la memoria.
+tipos de disco:
+	ide, eide,
+	sata,ata
+	scsi, uscsi
+	fc (fiber channel)
+	sas(serial attached scsi)
+	
+	track, set of sectors, and cylinder, set of tracks
+	
+	algoritmos de acceso a memoria secundaria:
+		fifo
+		sstf (shortest search time first)
+		SCAN da vueltas y va procesando las solicitudes. 
+		cscan: prioriza el tiempo uniforme. Va hasta el final, y en vez de volver leyendo, regresa a 0 y vuelve a leer yendo. 
+		look y clook: no va hasta el final, sino que va hasta el ultimo elemento
+	SSD:desventajas:
+		ausencia de estandares.
+		recuperacion de datos nula ante fallas fisicas.
+	SSD: buses: pci express y SATA
+	
+	componentes: memoria nand flash
+		
+			controlador
+			cache
+			condensador: necesario para mantener la integridad de los datos. 
+	los otros, son
+	SSDDRAM: mas caros, mas veloces, pero necesitan estar conectados de forma constante
+	
+	Tecnologias utilizadas para construir las memorias flash NAND
+		
+		SLC: veloces, minimo consumo energetico y costosas de fabricar
+		MLCL Son mas densas, y se consigue mayor capacidad en el mismo espacio y son tres veces mas economicas. En un mismo espacio fisico almacena 4 estados
+		TLC: gran densidad, tiempo de vida menor
+		
+		otras tecnicas de almacenamiento
+			NAS: Network area storage: se accede mediante tcp/ip /udp, los protocolos NFS, RPC, ISCSI
+			SAN: mas flexible, puede conectarse los san a centros de procesamiento. 
