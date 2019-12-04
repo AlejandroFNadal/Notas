@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE carta[
+<!ELEMENT carta (encabezado, cuerpo,sender)>
+<!ELEMENT encabezado (#PCDATA)>
+<!ELEMENT cuerpo (texto,imagen)>
+<!ELEMENT texto (#PCDATA)>
+<!ELEMENT imagen (#PCDATA)>
+<!ELEMENT sender (#PCDATA)>
+
+<!ATTLIST sender gender CDATA #REQUIRED>
+]>
+
+<carta>
+<encabezado>
+Dear Sir
+</encabezado>
+<cuerpo>
+<texto>
+We are tired of you
+</texto>
+<imagen> BLOBHERE</imagen>
+</cuerpo>
+<sender>ale</sender>
+</carta>

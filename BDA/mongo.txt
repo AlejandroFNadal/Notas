@@ -1,0 +1,6 @@
+db.pelis.find({Title:"AGENT TRUMAN"},{"Actors.First name":1, "Actors.Last name":1}).pretty();
+
+db.pelis.find({Title:"AGENT TRUMAN"},{Actors:0}).pretty();
+
+
+db.pelis.find({},{Title:1,Category:1}).pretty().sort({Category :-1});
